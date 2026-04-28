@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dark mode root */
+:root {
+  color-scheme: dark;
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  
+  --card: 0 0% 3.9%;
+  --card-foreground: 0 0% 100%;
+  --card-border: 0 0% 14.9%;
+  
+  --primary: 215 100% 50%;
+  --primary-foreground: 0 0% 0%;
+  
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.3% 65.1%;
+  
+  --accent: 215 100% 50%;
+  --accent-foreground: 0 0% 0%;
+  
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 215 100% 50%;
+  
+  --radius: 0.5rem;
+  
+  --sidebar-background: 0 0% 3.9%;
+  --sidebar-foreground: 210 40% 98%;
+  --sidebar-primary: 215 100% 50%;
+  --sidebar-primary-foreground: 0 0% 0%;
+  --sidebar-accent: 215 100% 50%;
+  --sidebar-accent-foreground: 0 0% 0%;
+  --sidebar-border: 217.2 32.6% 17.5%;
+  --sidebar-ring: 215 100% 50%;
+}
+
+* {
+  @apply border-border;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-background text-foreground;
+  background: linear-gradient(
+    135deg,
+    #000000 0%,
+    #0a1828 50%,
+    #001a33 100%
+  );
+  position: relative;
+}
+
+/* Subtle grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' seed='2' /%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  z-index: 1;
+}
+
+/* Animated gradient mesh background */
+@keyframes gradient-mesh {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  background: radial-gradient(circle at 20% 50%, rgba(0, 129, 251, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(0, 100, 200, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 50% 0%, rgba(50, 150, 255, 0.05) 0%, transparent 50%);
+  animation: gradient-mesh 15s ease infinite;
+  z-index: 0;
+}
+
+main {
+  position: relative;
+  z-index: 2;
+}
+
+/* Meta blue accent utilities */
+.text-accent {
+  @apply text-[#0081fb];
+}
+
+.bg-accent {
+  @apply bg-[#0081fb];
+}
+
+.border-accent {
+  @apply border-[#0081fb];
+}
+
+.from-accent {
+  @apply from-[#0081fb];
+}
+
+.to-accent-cyan {
+  @apply to-[#0064d9];
+}
+
+/* Smooth transitions */
+@layer components {
+  .transition-smooth {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .glow-accent {
+    @apply shadow-lg shadow-[#0081fb]/20;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0081fb;
+}
